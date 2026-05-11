@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Resumo Pós-Aula — Ritcher — CZK English</title>
+<style>
+    :root{
+      --page-bg: #f4f7fa;
+      --card-bg: #fff;
+      --accent: #2f86e6;
+      --accent-dark: #1f6fd1;
+      --green: #36b37e;
+      --muted: #6b7280;
+      --border: #e6eef8;
+      --box-radius: 12px;
+      --card-width: 720px;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      background:var(--page-bg);
+      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:48px 20px;
+    }
+
+    .card{
+      width:100%;
+      max-width:var(--card-width);
+      background:var(--card-bg);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 6px 22px rgba(33,47,60,0.06);
+      border:1px solid rgba(15,33,64,0.03);
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:8px;
+    }
+
+    .badge{
+      background:linear-gradient(180deg,#fff,#f2fbff);
+      border:1px solid var(--border);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700;
+      font-size:0.85rem;
+    }
+
+    h1{
+      margin:0;
+      font-size:1.3rem;
+      color:#0f1724;
+    }
+
+    .meta{
+      color:var(--muted);
+      font-size:0.92rem;
+      margin-top:6px;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:10px;
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 6px 14px rgba(47,134,230,0.12);
+    }
+
+    .btn.secondary{
+      background:#fff;
+      color:var(--accent);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+
+    main{margin-top:18px;}
+    section{margin-top:18px;}
+
+    .panel{
+      background:#fbfdff;
+      border-radius:12px;
+      padding:16px;
+      border:1px solid var(--border);
+    }
+
+    .outline-card{
+      border-radius:10px;
+      border:1px solid var(--border);
+      padding:16px;
+      background:#fff;
+    }
+
+    /* Vocabulary boxes */
+    .vocab-grid{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .vocab{
+      flex:1;
+      min-width:220px;
+      border-radius:10px;
+      padding:14px;
+      border:2px solid #dfeefe;
+      background:#fff;
+    }
+
+    .vocab.green{
+      border-color:#c9f3dc;
+      background:#f5fff6;
+    }
+
+    .vocab h3{
+      margin:0;
+      font-size:1rem;
+      color:#154360;
+    }
+
+    .vocab p{
+      margin:8px 0 0 0;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    /* Transcrição / gravação buttons */
+    .media-row{
+      display:flex;
+      gap:14px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    .media-btn{
+      background:#fff;
+      border:1px solid var(--border);
+      padding:12px 16px;
+      border-radius:10px;
+      font-weight:700;
+      color:var(--accent);
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      min-width:200px;
+      justify-content:center;
+    }
+
+    /* Homework box */
+    .homework{
+      background:#f3fff6;
+      border:1px solid #d7f5df;
+      border-radius:10px;
+      padding:14px;
+      margin-top:10px;
+    }
+
+    /* ===== TALK TIME – TABELA RETANGULAR ===== */
+    .speaking{
+      margin-top:18px;
+      padding:16px;
+      border-radius:12px;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      border:1px solid var(--border);
+      max-width:640px;
+    }
+
+    .speaking h2{
+      margin:0 0 10px 0;
+      font-size:1.05rem;
+      color:#0f1724;
+    }
+
+    .talk-table{
+      width:100%;
+      border-collapse:collapse;
+      border-radius:10px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid #e1e9f5;
+      font-size:0.9rem;
+    }
+
+    .talk-table th,
+    .talk-table td{
+      padding:8px 10px;
+      text-align:left;
+    }
+
+    .talk-table th{
+      background:#eef4ff;
+      color:#1b3556;
+      font-weight:700;
+      border-bottom:1px solid #dde6fa;
+    }
+
+    .row-teacher{
+      background:#e7f2ff; /* azul clarinho */
+    }
+
+    .row-student{
+      background:#e8f7ef; /* verde clarinho */
+    }
+
+    .talk-label{
+      font-weight:700;
+    }
+
+    .talk-percent{
+      font-weight:700;
+      color:#0f1724;
+    }
+
+    .talk-time{
+      color:var(--muted);
+    }
+
+    footer{
+      margin-top:20px;
+      color:var(--muted);
+      font-size:0.9rem;
+      text-align:center;
+    }
+
+    /* responsive */
+    @media (max-width:720px){
+      .card{padding:18px;border-radius:14px;}
+      .vocab-grid{flex-direction:column;}
+      .media-row{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+<article class="card" role="main">
+<header>
+<div>
+<div style="display:flex;gap:10px;align-items:center;">
+<span class="badge">PÓS-AULA</span>
+<h1>Questions, Apostrophe S &amp; From</h1>
+</div>
+<div class="meta" style="margin-top:8px;"><strong>Professor:</strong> César  •  <strong>Aluno:</strong> Ritcher  •  <strong>Data:</strong> 05/08/2026</div>
+</div>
+<div class="actions">
+<a class="btn" href="#" onclick="window.print();return false;">Imprimir / Salvar PDF</a>
+</div>
+</header>
+<main>
+<section class="panel">
+<p style="margin:0;font-weight:600;color:#08325a;">Resumo da aula sobre formação de perguntas com verb be, WH questions, apostrophe S, possessivos, from e números em inglês.</p>
+</section>
+<section>
+<h2 style="margin-bottom:8px;">Resumo da Aula</h2>
+<div class="outline-card">
+<p style="margin:0 0 8px 0;">A aula começou com uma conversa rápida sobre a entrevista feita recentemente e sobre a importância de continuar tentando, usando a experiência como treino para as próximas oportunidades. Depois, revisamos algumas atividades da área do aluno, principalmente as que envolviam formação de perguntas em inglês.</p>
+<p style="margin:0 0 8px 0;">O primeiro foco da aula foi entender melhor quando usar <strong>verb be</strong> em perguntas e quando usar <strong>do</strong>. Foi reforçado que, quando a pergunta é sobre <em>ser/estar</em>, usamos o próprio verbo be: <em>Are you a student?</em>, <em>Who is she?</em>, <em>Where are you from?</em>. Já com outros verbos, como <em>do</em> no sentido de “fazer”, usamos o auxiliar: <em>What do you do?</em>.</p>
+<p style="margin:0 0 8px 0;">Também trabalhamos a diferença entre <strong>yes/no questions</strong> e <strong>information questions</strong>. Quando a resposta começa com <em>yes</em> ou <em>no</em>, a pergunta normalmente começa com o verbo be: <em>Are you a teacher?</em>. Quando a pergunta pede informação, usamos palavras como <em>what</em>, <em>where</em>, <em>who</em>, <em>when</em> e <em>how</em>.</p>
+<p style="margin:0 0 8px 0;">Na segunda parte, revisamos <strong>apostrophe S</strong> para posse, usando exemplos como <em>Hannah's friend</em>, <em>Hannah's neighbour</em>, <em>Cesar's house</em> e a diferença entre singular e plural em frases como <em>our neighbour's last name</em> e <em>our neighbours' last name</em>. Também vimos que, quando uma palavra já termina com S, o apóstrofo pode aparecer depois do S.</p>
+<p style="margin:0 0 8px 0;">Em seguida, assistimos a um vídeo curto com apresentações e relações entre pessoas. O aluno identificou informações como <em>Frank is Hannah's friend</em> e <em>Frank is Hannah's neighbour</em>, conectando o listening ao uso real de possessivos e apostrophe S.</p>
+<p style="margin:0;">No final, revisamos números em inglês e alguns usos comuns: trocar <strong>zero</strong> por <strong>O</strong> em telefones e endereços, e o uso informal de <strong>hundred</strong> em valores como <em>eleven hundred</em> para significar 1.100. Finalizamos com exercícios de <strong>Where are you from?</strong> e respostas com <strong>from</strong>.</p>
+</div>
+</section>
+<section>
+<h2 style="margin-bottom:8px;">Key Vocabulary</h2>
+<div class="vocab-grid">
+<div class="vocab">
+<h3>Apostrophe S</h3>
+<p style="margin-top:8px;font-size:0.92rem;color:var(--muted);"><em>(pt) 's usado para indicar posse</em><br/><small>Hannah's friend.</small></p>
+</div>
+<div class="vocab green">
+<h3>Where are you from?</h3>
+<p style="margin-top:8px;font-size:0.92rem;color:var(--muted);"><em>(pt) de onde você é?</em><br/><small>I'm from Brazil.</small></p>
+</div>
+</div>
+</section>
+<!-- NOVOS TÓPICOS: VOCABULÁRIO DA AULA, FRASES MODELO, CORREÇÕES -->
+<section>
+<h2 style="margin-bottom:8px;">Vocabulário da aula</h2>
+<div class="outline-card">
+<h3 style="margin-top:0;">Perguntas com verb be</h3>
+<ul>
+<li><strong>verb be</strong> – verbo ser/estar</li>
+<li><strong>am</strong> – sou/estou, usado com <em>I</em></li>
+<li><strong>is</strong> – é/está, usado com <em>he/she/it</em></li>
+<li><strong>are</strong> – é/está/são/estão, usado com <em>you/we/they</em></li>
+<li><strong>yes/no question</strong> – pergunta de sim ou não</li>
+<li><strong>information question</strong> – pergunta que pede informação</li>
+<li><strong>What do you do?</strong> – O que você faz?</li>
+<li><strong>Are you a student?</strong> – Você é estudante?</li>
+<li><strong>Who is she?</strong> – Quem é ela?</li>
+<li><strong>Who are they?</strong> – Quem são eles/elas?</li>
+</ul>
+<h3>WH questions</h3>
+<ul>
+<li><strong>what</strong> – o quê / qual</li>
+<li><strong>where</strong> – onde / de onde</li>
+<li><strong>who</strong> – quem</li>
+<li><strong>when</strong> – quando</li>
+<li><strong>how</strong> – como</li>
+<li><strong>Where are you from?</strong> – De onde você é?</li>
+<li><strong>Where is he from?</strong> – De onde ele é?</li>
+<li><strong>Are you from Korea?</strong> – Você é da Coreia?</li>
+<li><strong>Is she from São Paulo?</strong> – Ela é de São Paulo?</li>
+</ul>
+<h3>Apostrophe S e possessivos</h3>
+<ul>
+<li><strong>apostrophe S ('s)</strong> – usado para posse</li>
+<li><strong>Cesar's house</strong> – a casa do César</li>
+<li><strong>Hannah's friend</strong> – o amigo da Hannah</li>
+<li><strong>Hannah's neighbour</strong> – o vizinho da Hannah</li>
+<li><strong>Matheus' car</strong> – o carro do Matheus</li>
+<li><strong>our neighbour's last name</strong> – o sobrenome do nosso vizinho</li>
+<li><strong>our neighbours' last name</strong> – o sobrenome dos nossos vizinhos</li>
+<li><strong>my</strong> – meu/minha</li>
+<li><strong>your</strong> – seu/sua</li>
+<li><strong>his</strong> – dele</li>
+<li><strong>her</strong> – dela</li>
+<li><strong>our</strong> – nosso/nossa</li>
+<li><strong>their</strong> – deles/delas</li>
+</ul>
+<h3>Pessoas e relações</h3>
+<ul>
+<li><strong>classmate</strong> – colega de classe</li>
+<li><strong>roommate</strong> – colega de quarto/casa</li>
+<li><strong>teammate</strong> – colega de equipe</li>
+<li><strong>neighbour</strong> – vizinho(a)</li>
+<li><strong>friend</strong> – amigo(a)</li>
+<li><strong>colleague</strong> – colega de trabalho/profissional</li>
+<li><strong>last name</strong> – sobrenome</li>
+<li><strong>spell</strong> – soletrar</li>
+<li><strong>Nice to meet you</strong> – prazer em conhecer você</li>
+</ul>
+<h3>Números e from</h3>
+<ul>
+<li><strong>zero</strong> – zero</li>
+<li><strong>O</strong> – forma comum de dizer zero em telefone/endereço</li>
+<li><strong>twenty</strong> – vinte</li>
+<li><strong>thirty</strong> – trinta</li>
+<li><strong>hundred</strong> – cem/centena</li>
+<li><strong>one hundred one</strong> – cento e um</li>
+<li><strong>one thousand one hundred</strong> – mil e cem</li>
+<li><strong>eleven hundred</strong> – mil e cem, uso informal</li>
+<li><strong>eighteen hundred</strong> – mil e oitocentos, uso informal</li>
+<li><strong>from</strong> – de / origem / ponto de partida</li>
+<li><strong>to</strong> – para / destino</li>
+</ul>
+</div>
+</section>
+<section>
+<h2 style="margin-bottom:8px;">Frases modelo da aula</h2>
+<div class="outline-card">
+<ul>
+<li>Where are you from?</li>
+<li>I'm from Brazil.</li>
+<li>Are you a student?</li>
+<li>Yes, I am.</li>
+<li>Are you a teacher?</li>
+<li>No, I'm not.</li>
+<li>What do you do?</li>
+<li>Who is she?</li>
+<li>She is my classmate.</li>
+<li>Who is he?</li>
+<li>He is my roommate.</li>
+<li>Who are they?</li>
+<li>They are my teammates.</li>
+<li>This is Kevin.</li>
+<li>I am Hannah's friend.</li>
+<li>Frank is Hannah's neighbour.</li>
+<li>How do you spell Sinead?</li>
+<li>They are from Italy.</li>
+<li>She is from Mexico City.</li>
+<li>No, I am not. I am from Canada.</li>
+</ul>
+</div>
+</section>
+<!-- ✅ NOVA SEÇÃO FIXA: CORREÇÕES IMPORTANTES -->
+<section>
+<h2 style="margin-bottom:8px;">Correções importantes</h2>
+<div class="outline-card">
+<ul>
+<li><strong>❌ Where is do you live? → ✅ Where are you from?</strong><br/>A resposta era <em>I'm from Brazil</em>. Como a ideia é origem, a pergunta correta usa <strong>from</strong>: <em>Where are you from?</em>.</li>
+<li><strong>❌ Do + verb be → ✅ usar o próprio verb be</strong><br/>Quando a pergunta é com <em>ser/estar</em>, não usamos <strong>do</strong>: <em>Are you a student?</em>, <em>Is she your classmate?</em>, <em>Where are you from?</em>.</li>
+<li><strong>❌ Is com you → ✅ Are com you</strong><br/>Com <strong>you</strong>, usamos <strong>are</strong>: <em>Are you from Brazil?</em>, não <em>Is you from Brazil?</em>.</li>
+<li><strong>Yes/No question x Information question</strong><br/>Se a resposta começa com <em>yes</em> ou <em>no</em>, a pergunta geralmente começa com o verbo be: <em>Are you a teacher?</em>. Se precisa de informação, usamos WH: <em>Who is she?</em>, <em>Where are they from?</em>.</li>
+<li><strong>❌ What are a student? → ✅ What do you do?</strong><br/>Para perguntar profissão/ocupação, usamos <em>What do you do?</em>. Aqui o verbo é <em>do</em> no sentido de “fazer”, então entra o auxiliar.</li>
+<li><strong>❌ Who do you are? → ✅ Who are you?</strong><br/>Com verb be, o verbo vem antes do sujeito na pergunta: <em>Who are you?</em>, <em>Who is she?</em>, <em>Who are they?</em>.</li>
+<li><strong>Apostrophe S com nomes</strong><br/>Para posse, usamos <strong>'s</strong>: <em>Hannah's friend</em>, <em>Cesar's house</em>. Se o nome já termina com S, pode aparecer apenas o apóstrofo depois do S: <em>Matheus' car</em>.</li>
+<li><strong>Apostrophe S no singular e no plural</strong><br/><em>Our neighbour's last name</em> = sobrenome de um vizinho. <em>Our neighbours' last name</em> = sobrenome dos vizinhos. Na fala, pode soar igual; o contexto ajuda a entender.</li>
+<li><strong>From = ponto de partida/origem</strong><br/><strong>From</strong> não é só tradução de “de”. Pense nele como origem ou ponto de partida: <em>I'm from Brazil</em>, <em>from César to Ritcher</em>.</li>
+<li><strong>Zero x O</strong><br/>Em telefone e endereço, é comum ouvir <strong>O</strong> no lugar de <strong>zero</strong>. Exemplo: <em>O O thirty-four</em>.</li>
+<li><strong>Eleven hundred</strong><br/>Em uso informal, especialmente com dinheiro, <em>eleven hundred</em> pode significar 1.100. A forma mais formal é <em>one thousand one hundred</em>.</li>
+</ul>
+</div>
+</section>
+<!-- ✅ FIM DA NOVA SEÇÃO -->
+<section>
+<h2 style="margin-bottom:8px;">Transcrição &amp; Gravação</h2>
+<div class="media-row">
+<!-- Transcrição sem link (apenas botão) -->
+<a class="media-btn" href="#" role="button">📄 Acessar transcrição</a>
+<!-- Vídeo da aula com o link que você mandou -->
+<a class="media-btn" href="https://youtu.be/JDbgbEHIDtQ" rel="noopener noreferrer" role="button" style="background:linear-gradient(180deg,#1f6fd1,#2f86e6);color:#fff;border:none;min-width:260px;" target="_blank">
+              🎥 Assistir gravação (acesso privado)
+            </a>
+</div>
+</section>
+<!-- ===== TABELA DE DISTRIBUIÇÃO DE FALA ===== -->
+<section aria-label="Distribuição de fala" class="speaking">
+<h2>Tempo de Fala (Talk Time)</h2>
+<table class="talk-table">
+<thead>
+<tr>
+<th>Quem falou</th>
+<th>Porcentagem</th>
+<th>Duração aproximada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-teacher">
+<td><span class="talk-label">César (Professor)</span></td>
+<td><span class="talk-percent">73%</span></td>
+<td class="talk-time">~44 minutos</td>
+</tr>
+<tr class="row-student">
+<td><span class="talk-label">Ritcher</span></td>
+<td><span class="talk-percent">27%</span></td>
+<td class="talk-time">~16 minutos</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ===== FIM TABELA ===== -->
+<section>
+<h2 style="margin-bottom:8px;">Homework</h2>
+<div class="homework"><p style="margin:0;">📌 <strong>Lição de casa:</strong> LEMBRAR de LER O POS AULA DE 2 A 3X NA SEMANA</p></div>
+<div style="margin-top:14px;">
+<a class="btn" href="https://wa.me" style="background:#25D366;border-radius:10px;box-shadow:none;">
+              💬 Falar comigo no WhatsApp
+            </a>
+</div>
+</section>
+</main>
+<footer>
+<p style="margin:18px 0 0 0;color:var(--muted);font-size:0.9rem;">
+          © 2025 CZK English • Este conteúdo é exclusivo para fins educacionais. • Suporte: czkenglish@gmail.com
+        </p>
+</footer>
+</article>
+</div>
+</body>
+</html>
